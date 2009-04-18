@@ -1,0 +1,9 @@
+;	File     : Binarize.def
+
+LIBRARY         Binarize.AX
+DESCRIPTION     'Binarize filter'
+EXPORTS
+		DllGetClassObject   PRIVATE     
+		DllCanUnloadNow     PRIVATE     
+		DllRegisterServer   PRIVATE     
+		DllUnregisterServer PRIVATE     

@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = MyMouseClickView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = MyTransWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {glView = id; }; 
+            SUPERCLASS = NSWindow; 
+        }, 
+        {
+            ACTIONS = {alphaSlider = id; }; 
+            CLASS = SonsonOpenGLView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSOpenGLView; 
+        }
+    ); 
+    IBVersion = 1; 
+}

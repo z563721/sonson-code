@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = MyDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {View = id; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = SonsonOpenGLView; LANGUAGE = ObjC; SUPERCLASS = NSOpenGLView; }
+    ); 
+    IBVersion = 1; 
+}

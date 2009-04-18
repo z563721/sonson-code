@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Binarize", "Binarize.vcproj", "{3F6CC6A6-FBC1-4DCD-916A-3FA375FDB562}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{3F6CC6A6-FBC1-4DCD-916A-3FA375FDB562}.Debug.ActiveCfg = Debug|Win32
+		{3F6CC6A6-FBC1-4DCD-916A-3FA375FDB562}.Debug.Build.0 = Debug|Win32
+		{3F6CC6A6-FBC1-4DCD-916A-3FA375FDB562}.Release.ActiveCfg = Release|Win32
+		{3F6CC6A6-FBC1-4DCD-916A-3FA375FDB562}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

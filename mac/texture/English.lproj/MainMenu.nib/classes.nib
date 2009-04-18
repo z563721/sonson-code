@@ -1,0 +1,21 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                pushBMP = id; 
+                pushGIF = id; 
+                pushGIFT = id; 
+                pushJPG = id; 
+                pushOther = id; 
+                pushPNG = id; 
+                pushTIF = id; 
+                pushTIFT = id; 
+            }; 
+            CLASS = SonsonOpenGLView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSOpenGLView; 
+        }
+    ); 
+    IBVersion = 1; 
+}
