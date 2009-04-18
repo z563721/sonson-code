@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {sendSomething = id; startServer = id; }; 
+            CLASS = MyServer; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {"IPStr_" = id; "receiveStr_" = id; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

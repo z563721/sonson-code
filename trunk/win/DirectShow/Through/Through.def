@@ -1,0 +1,9 @@
+;	File     : Through.def
+
+LIBRARY         Through.AX
+DESCRIPTION     'Through filter'
+EXPORTS
+		DllGetClassObject   PRIVATE     
+		DllCanUnloadNow     PRIVATE     
+		DllRegisterServer   PRIVATE     
+		DllUnregisterServer PRIVATE     

@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NSGLImageView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {offscreenBuf = id; }; 
+            SUPERCLASS = NSImageView; 
+        }, 
+        {
+            ACTIONS = {draw = id; }; 
+            CLASS = NSGLOffscreen; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {imageView = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = SonsonOpenGLView; LANGUAGE = ObjC; SUPERCLASS = NSOpenGLView; }
+    ); 
+    IBVersion = 1; 
+}
