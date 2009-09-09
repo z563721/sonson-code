@@ -32,7 +32,14 @@
 
 @implementation UIMenuHacksViewController
 
-
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+	DNSLogMethod
+	[contentview resignFirstResponder];
+	UIMenuController *controller = [UIMenuController sharedMenuController];
+	[controller setMenuVisible:NO animated:YES];
+	[controller update];
+	return YES;
+}
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.

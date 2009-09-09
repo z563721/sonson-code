@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		149706E6105600D6003AB5FD /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 149706E5105600D6003AB5FD /* ContentView.m */; };
+		149708EF10573EF3003AB5FD /* UIMenuController+Hack.m in Sources */ = {isa = PBXBuildFile; fileRef = 149708EE10573EF3003AB5FD /* UIMenuController+Hack.m */; };
+		14970923105742D7003AB5FD /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 14970922105742D7003AB5FD /* button.png */; };
 		1D3623260D0F684500981E51 /* UIMenuHacksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* UIMenuHacksAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -21,6 +23,9 @@
 /* Begin PBXFileReference section */
 		149706E4105600D6003AB5FD /* ContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentView.h; sourceTree = "<group>"; };
 		149706E5105600D6003AB5FD /* ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
+		149708ED10573EF3003AB5FD /* UIMenuController+Hack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIMenuController+Hack.h"; sourceTree = "<group>"; };
+		149708EE10573EF3003AB5FD /* UIMenuController+Hack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIMenuController+Hack.m"; sourceTree = "<group>"; };
+		14970922105742D7003AB5FD /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* UIMenuHacksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMenuHacksAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* UIMenuHacksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMenuHacksAppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +64,8 @@
 				1D3623250D0F684500981E51 /* UIMenuHacksAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* UIMenuHacksViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* UIMenuHacksViewController.m */,
+				149708ED10573EF3003AB5FD /* UIMenuController+Hack.h */,
+				149708EE10573EF3003AB5FD /* UIMenuController+Hack.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -95,6 +102,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14970922105742D7003AB5FD /* button.png */,
 				2899E5210DE3E06400AC0155 /* UIMenuHacksViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* UIMenuHacks-Info.plist */,
@@ -156,6 +164,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* UIMenuHacksViewController.xib in Resources */,
+				14970923105742D7003AB5FD /* button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +179,7 @@
 				1D3623260D0F684500981E51 /* UIMenuHacksAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* UIMenuHacksViewController.m in Sources */,
 				149706E6105600D6003AB5FD /* ContentView.m in Sources */,
+				149708EF10573EF3003AB5FD /* UIMenuController+Hack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,11 +229,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuichi Yoshida";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2A53329E-35A2-43E8-BA98-5A2971C8F4F4";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;

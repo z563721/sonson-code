@@ -30,8 +30,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIMenuHacksViewController : UIViewController {
+@class ContentView;
 
+@interface UIMenuHacksViewController : UIViewController {
+	IBOutlet ContentView *contentview;
 }
 
 @end
