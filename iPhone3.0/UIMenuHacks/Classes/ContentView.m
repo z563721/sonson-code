@@ -41,42 +41,18 @@
 
 + (void)replaceCallBarButton:(id)callBarButton action:(SEL)action {
 	if (action == @selector(cut:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"do hoge", nil) action:action];
+		[callBarButton setupWithTitle:NSLocalizedString(@"do cut", nil) action:action];
 	}
 	else if (action == @selector(copy:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"do bar", nil) action:action];
+		[callBarButton setupWithImage:[UIImage imageNamed:@"button.png"] action:action];
+		[callBarButton setupWithTitle:nil action:action];
 	}
 	else if (action == @selector(paste:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"do foo", nil) action:action];
+		[callBarButton setupWithTitle:NSLocalizedString(@"do paste", nil) action:action];
 	}
 	else if (action == @selector(select:)) {
 	}
 	else if (action == @selector(selectAll:)) {
-	}
-	else if (action == @selector(_setRtoLTextDirection:)) {
-	}
-	else if (action == @selector(_setLtoRTextDirection:)) {
-	}
-}
-
-+ (void)getBacckCallBarButton:(id)callBarButton action:(SEL)action {
-	DNSLogMethod
-	NSLog(@"%@", NSStringFromSelector(action));
-	if (action == @selector(cut:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"Cut", nil) action:action];
-	}
-	else if (action == @selector(copy:)) {
-		NSLog(@"%@", NSStringFromSelector(action));
-		[callBarButton setupWithTitle:NSLocalizedString(@"Copy", nil) action:action];
-	}
-	else if (action == @selector(paste:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"Paste", nil) action:action];
-	}
-	else if (action == @selector(select:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"Select", nil) action:action];
-	}
-	else if (action == @selector(selectAll:)) {
-		[callBarButton setupWithTitle:NSLocalizedString(@"Select All", nil) action:action];
 	}
 	else if (action == @selector(_setRtoLTextDirection:)) {
 	}
@@ -85,7 +61,7 @@
 }
 
 #pragma mark -
-#pragma mark for UIMenuController
+#pragma mark UIResponderStandardEditActions 
 
 - (void)copy:(id)sender {
 	DNSLogMethod
@@ -115,8 +91,10 @@
 	DNSLogMethod
 }
 
+#pragma mark -
+#pragma mark Override
+
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-	NSLog(@"%@", NSStringFromSelector(action));
 	if (action == @selector(cut:)) {
 		return YES;
 	}
@@ -129,30 +107,21 @@
 	return NO;
 }
 
-- (void)didDismissedUIMenuController:(NSNotification*)notification {
-	NSLog(@"didDismissedUIMenuController:");
-	[self resignFirstResponder];
-}
-
-#pragma mark -
-#pragma mark Override
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
 	UITouch *touch = [touches anyObject];
-	
 	CGPoint point = [touch locationInView:self];
 	
+	// make self first responder
 	[self becomeFirstResponder];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismissedUIMenuController:) name:kDidDismissedUIMenuController object:nil];
-	UIMenuController *controller = [UIMenuController sharedMenuController];
-	[controller setTargetRect:CGRectMake(point.x, point.y, 1, 1) inView:self];
-	[controller setMenuVisible:YES animated:YES];
-	[controller update];
+	
+	// show UIMenuController
+	[[UIMenuController sharedMenuController] setTargetRect:CGRectMake(point.x, point.y, 1, 1) inView:self];
+	[[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
+	[[UIMenuController sharedMenuController] update];
 }
 
 - (BOOL)canBecomeFirstResponder {
-	return YES;
+	return YES;	// must be YES for UIMenuController
 }
 
 - (id)initWithFrame:(CGRect)frame {

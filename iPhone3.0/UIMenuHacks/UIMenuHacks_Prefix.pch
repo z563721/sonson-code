@@ -32,12 +32,10 @@
     #import <UIKit/UIKit.h>
 #endif
 
-#define _DEBUG
-
 #if TARGET_IPHONE_SIMULATOR
-#import <objc/objc-runtime.h>
+	#import <objc/objc-runtime.h>
 #else
-#import <objc/runtime.h>
+	#import <objc/runtime.h>
 #endif
 
 #ifdef	_DEBUG
