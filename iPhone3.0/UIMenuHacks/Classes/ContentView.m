@@ -29,132 +29,63 @@
 //
 
 #import "ContentView.h"
-
-@interface NSObject(UIMenuControllerHack)
-// delegate
-+ (void)replaceCallBarButton:(id)uicallbarbutton action:(SEL)action;
-+ (void)getBacckCallBarButton:(id)uicallbarbutton action:(SEL)action;
-
-// UICallBar
-- (BOOL)visible;
-- (BOOL)recentlyFaded;
-- (id)visibleButtons;
-- (id)targetForAction:(SEL)fp8;
-
-// UICallBarButton
-- (void)setupWithTitle:(id)fp8 action:(SEL)fp12;
-- (void)setupWithImage:(id)fp8 action:(SEL)fp12;
-- (SEL)action;
-@end
-
-BOOL isDirty;
-NSMutableArray *targetClassArray = nil;
-
-@implementation UIMenuController(Hack)
-
-- (void)calloutBarWillStartAnimation:(id)fp8 {
-	DNSLogMethod
-	if (![fp8 visible] && ![fp8 recentlyFaded]) {
-		NSArray *buttons = [fp8 visibleButtons];
-		
-		if (targetClassArray == nil) {
-			targetClassArray = [[NSMutableArray array] retain];
-		}
-		[targetClassArray removeAllObjects];
-		
-		for (int i = 0; i < [buttons count]; i++) {
-			id button = [buttons objectAtIndex:i];
-			SEL action = [button action];
-			id target = [fp8 targetForAction:action];
-			DNSLog(@"%s", class_getName([target class]));
-			if ([[target class] respondsToSelector:@selector(replaceCallBarButton:action:)]) {
-				[[target class] replaceCallBarButton:button action:action];
-				isDirty = YES;
-				[targetClassArray addObject:[target class]];
-			}
-		}
-	}
-}
-
-- (void)calloutBarDidFinishAnimation:(id)fp8 {
-	DNSLogMethod
-	
-	if (![fp8 visible] && [fp8 recentlyFaded]) {
-		NSArray *buttons = [fp8 visibleButtons];
-		
-		for (int i = 0; i < [buttons count]; i++) {
-			id button = [buttons objectAtIndex:i];
-			if ([targetClassArray count]) {
-			id targetClass = [targetClassArray objectAtIndex:i];
-			SEL action = [button action];
-			if ([targetClass respondsToSelector:@selector(getBacckCallBarButton:action:)]) {
-				[targetClass getBacckCallBarButton:button action:action];
-			}
-			}
-		}
-	}
-}
-
-@end
+#import "UIMenuController+Hack.h"
 
 
 #import "ContentView.h"
 
 @implementation ContentView
 
-+ (void)replaceCallBarButton:(id)uicallbarbutton action:(SEL)action {
+#pragma mark -
+#pragma mark UIMenuControllerHack
+
++ (void)replaceCallBarButton:(id)callBarButton action:(SEL)action {
 	if (action == @selector(cut:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Copy Body", nil) action:@selector(cut:)];	
+		[callBarButton setupWithTitle:NSLocalizedString(@"do hoge", nil) action:action];
 	}
 	else if (action == @selector(copy:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Copy Title&URL", nil) action:@selector(copy:)];	
+		[callBarButton setupWithTitle:NSLocalizedString(@"do bar", nil) action:action];
 	}
 	else if (action == @selector(paste:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Copy All", nil) action:@selector(paste:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"do foo", nil) action:action];
 	}
 	else if (action == @selector(select:)) {
 	}
 	else if (action == @selector(selectAll:)) {
 	}
+	else if (action == @selector(_setRtoLTextDirection:)) {
+	}
+	else if (action == @selector(_setLtoRTextDirection:)) {
+	}
 }
 
-+ (void)getBacckCallBarButton:(id)uicallbarbutton action:(SEL)action {
-	NSLog(@"getBacckCallBarButton");
++ (void)getBacckCallBarButton:(id)callBarButton action:(SEL)action {
+	DNSLogMethod
 	NSLog(@"%@", NSStringFromSelector(action));
 	if (action == @selector(cut:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Cut", nil) action:@selector(cut:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"Cut", nil) action:action];
 	}
 	else if (action == @selector(copy:)) {
 		NSLog(@"%@", NSStringFromSelector(action));
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Copy", nil) action:@selector(copy:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"Copy", nil) action:action];
 	}
 	else if (action == @selector(paste:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Paste", nil) action:@selector(paste:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"Paste", nil) action:action];
 	}
 	else if (action == @selector(select:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Select", nil) action:@selector(select:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"Select", nil) action:action];
 	}
 	else if (action == @selector(selectAll:)) {
-		[uicallbarbutton setupWithTitle:NSLocalizedString(@"Select All", nil) action:@selector(selectAll:)];
+		[callBarButton setupWithTitle:NSLocalizedString(@"Select All", nil) action:action];
+	}
+	else if (action == @selector(_setRtoLTextDirection:)) {
+	}
+	else if (action == @selector(_setLtoRTextDirection:)) {
 	}
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-	UITouch *touch = [touches anyObject];
-	
-	CGPoint point = [touch locationInView:self];
-	
-	[self becomeFirstResponder];
-	UIMenuController *controller = [UIMenuController sharedMenuController];
-	[controller setTargetRect:CGRectMake(point.x, point.y, 1, 1) inView:self];
-	[controller setMenuVisible:YES animated:YES];
-	[controller update];
-}
-
-- (BOOL)canBecomeFirstResponder {
-	return YES;
-}
+#pragma mark -
+#pragma mark for UIMenuController
 
 - (void)copy:(id)sender {
 	DNSLogMethod
@@ -172,17 +103,56 @@ NSMutableArray *targetClassArray = nil;
 	DNSLogMethod
 }
 
+- (void)selectAll:(id)sender {
+	DNSLogMethod
+}
+
+- (void)_setRtoLTextDirection:(id)sender {
+	DNSLogMethod
+}
+
+- (void)_setLtoRTextDirection:(id)sender {
+	DNSLogMethod
+}
+
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-	if (action == @selector(copy:)) {
+	NSLog(@"%@", NSStringFromSelector(action));
+	if (action == @selector(cut:)) {
 		return YES;
 	}
-	if (action == @selector(cut:)) {
+	if (action == @selector(copy:)) {
 		return YES;
 	}
 	if (action == @selector(paste:)) {
 		return YES;
 	}
 	return NO;
+}
+
+- (void)didDismissedUIMenuController:(NSNotification*)notification {
+	NSLog(@"didDismissedUIMenuController:");
+	[self resignFirstResponder];
+}
+
+#pragma mark -
+#pragma mark Override
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+	UITouch *touch = [touches anyObject];
+	
+	CGPoint point = [touch locationInView:self];
+	
+	[self becomeFirstResponder];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismissedUIMenuController:) name:kDidDismissedUIMenuController object:nil];
+	UIMenuController *controller = [UIMenuController sharedMenuController];
+	[controller setTargetRect:CGRectMake(point.x, point.y, 1, 1) inView:self];
+	[controller setMenuVisible:YES animated:YES];
+	[controller update];
+}
+
+- (BOOL)canBecomeFirstResponder {
+	return YES;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -197,6 +167,7 @@ NSMutableArray *targetClassArray = nil;
 }
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 
